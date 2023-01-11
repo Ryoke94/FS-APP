@@ -1,0 +1,162 @@
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    label {
+      font-weight: bold;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    td, th {
+      border: 1px solid black;
+      padding: 8px;
+    }
+    th {
+      text-align: left;
+    }
+    input[type=submit] {
+      background-color: blue;
+      color: white;
+      border-radius: 4px;
+      padding: 10px 20px;
+      margin-top: 20px;
+    }
+    input[type=checkbox] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      border: 1px solid black;
+      border-radius: 3px;
+      margin-right: 8px;
+    }
+    input[type=checkbox]:checked {
+      background-color: blue;
+    }
+    select {
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+  <body>
+    <form id="formId" action="/register" method="POST" onsubmit="sendFormDataToGoogleSheet(); return false;">
+      <label for="sport">Sport</label>
+      <select name="sport" id="sport">
+        <option value="rugby">Rugby</option><br>
+        </select>
+        <br>
+        <label for="matchdays">Jours de matchs</label>
+        <input type="checkbox" name="matchdays" value="saturday">Samedi
+        <input type="checkbox" name="matchdays" value="sunday">Dimanche<br>
+        
+        <label for="trainingdays">Jours d'entraînements collectifs</label>
+        <input type="checkbox" name="trainingdays" value="monday">Lundi
+        <input type="checkbox" name="trainingdays" value="tuesday">Mardi
+        <input type="checkbox" name="trainingdays" value="wednesday">Mercredi
+        <input type="checkbox" name="trainingdays" value="thursday">Jeudi
+        <input type="checkbox" name="trainingdays" value="friday">Vendredi<br>
+      
+        <label for="program">Programme</label>
+        <select name="program" id="program">
+          <option value="3/4">3/4</option>
+          <option value="AVANT">AVANT</option><br>
+        </select>
+        <br>
+        <label for="physiquedays">Jours dédiés au programme physique</label>
+        <input type="checkbox" name="physiquedays" value="monday">Lundi
+        <input type="checkbox" name="physiquedays" value="tuesday">Mardi
+        <input type="checkbox" name="physiquedays" value="wednesday">Mercredi
+        <input type="checkbox" name="physiquedays" value="thursday">Jeudi
+        <input type="checkbox" name="physiquedays" value="friday">Vendredi<br>
+      
+        <label for="maxperformances">Performances maximales</label>
+        <table>
+          <tr>
+            <td>Exercice</td>
+            <td>Performance</td>
+          </tr>
+          <tr>
+            <td>Squat</td>
+            <td><input type="number" name="maxperformances[squat]"></td>
+            <td>Kg</td>
+          </tr>
+          <tr>
+            <td>Soulevé de terre</td>
+            <td><input type="number" name="maxperformances[deadlift]"></td>
+            <td>Kg</td>
+          </tr>
+          <tr>
+            <td>Développé couché</td>
+            <td><input type="number" name="maxperformances[benchpress]"></td>
+            <td>Kg</td>
+          </tr>
+          <tr>
+            <td>Snatch</td>
+            <td><input type="number" name="maxperformances[snatch]"></td>
+            <td>Kg</td>
+        </tr>
+        <tr>
+            <td>Tractions</td>
+            <td><input type="number" name="maxperformances[pullups]"></td>
+            <td>Reps</td>
+          </tr>
+          <tr>
+            <td>Clean and Jerk</td>
+            <td><input type="number" name="maxperformances[cleanandjerk]"></td>
+            <td>Kg</td>
+          </tr>
+          <tr>
+            <td>Front Squat</td>
+            <td><input type="number" name="maxperformances[frontsquat]"></td>
+            <td>Kg</td>
+          </tr>
+          <tr>
+            <td>OverHead Squat</td>
+            <td><input type="number" name="maxperformances[overheadsquat]"></td>
+            <td>Kg</td>
+            <td>-Facultatif-</td>
+          </tr>
+          <tr>
+            <td>Dips</td>
+            <td><input type="number" name="maxperformances[dips]"></td>
+            <td>Reps</td>
+          </tr>
+          <tr>
+            <td>10 RM Fentes</td>
+            <td><input type="number" name="maxperformances[lunges]"></td>
+            <td>Kg</td>
+          </tr>
+          <tr>
+        </table>
+        
+      </form>
+      <function sendFormDataToGoogleSheet() {
+        // Récupération des données du formulaire en utilisant l'objet FormData
+        var formData = new FormData(document.getElementById("formId"));
+        
+        // Configuration des options pour l'appel de l'URL
+        var options = {
+          "method": "POST",
+          "payload": formData
+        };
+        
+        // Envoi de la requête à l'URL de votre script Google Apps
+        UrlFetchApp.fetch("https://script.google.com/macros/s/{1SeFpul7KMGHvB199i9f1AfwjYDN3fySrCEk4Alc9ex_Jc_hb19TpFg81}/exec", options);
+        
+        // Affichage d'un message pour indiquer que les données ont été envoyées avec succès
+        alert("Les données ont été envoyées avec succès!");
+      }></function>
+      <form id="formId" onsubmit="sendFormDataToGoogleSheet(); return false;">
+        <!-- Code de votre formulaire -->
+        <input type="submit" value="Envoyer">
+      </form>
+      
+
+  
+  </body>
+  
